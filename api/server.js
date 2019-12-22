@@ -4,7 +4,9 @@ const helmet = require('helmet');
 
 const authenticate = require('../auth/authenticate-middleware.js');
 const authRouter = require('../auth/auth-router.js');
+const locationsRouter = require('../locations/locations-router.js');
 const usersRouter = require('../users/users-router.js');
+const itemsRouter = require('../items/items-router.js');
 
 const server = express();
 
@@ -13,7 +15,9 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api/auth', authRouter);
+server.use('/api/locations', authenticate, locationsRouter);
 server.use('/api/users', authenticate, usersRouter);
+server.use('/api/items', authenticate, itemsRouter);
 
 server.get("/", (req, res) => {
     res.status(200).json({ api: "up", dbenv: process.env.DB_ENV });
