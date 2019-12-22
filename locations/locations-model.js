@@ -1,4 +1,4 @@
-db = require('../data/db-config.js');
+db = require('../database/dbconfig.js');
 
 module.exports = {
     insert,
@@ -8,15 +8,6 @@ module.exports = {
     update,
     remove
 };
-
-function insert(item) {
-    return db('locations')
-        .insert(item, 'id')
-        .then(ids => {
-            const [id] = ids;
-            return findById(id);
-        });
-}
 
 function find() {
     return db('locations');
@@ -31,6 +22,15 @@ function findById(id) {
     return db('locations')
         .where({ id })
         .first();
+}
+
+function insert(item) {
+    return db('locations')
+        .insert(item, 'id')
+        .then(ids => {
+            const [id] = ids;
+            return findById(id);
+        });
 }
 
 function update(id, changes) {

@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const Hubs = require('../models/hubs-model.js');
+const Items = require('../items/items-model.js');
 
 router.get('/', async (req, res) => {
     try {
-        const items = await Hubs.find();
+        const items = await Items.find();
         res.status(200).json(items);
     } catch (error) {
         res.status(500).json({ error, message: 'unable to get items' })
@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const item = await Hubs.findById(req.params.id);
+        const item = await Items.findById(req.params.id);
         if (item) {
             res.status(200).json(item);
         } else {
@@ -25,7 +25,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const item = await Hubs.insert(req.body);
+        const item = await Items.insert(req.body);
         if (item) {
             res.status(201).json({ item, message: 'you have successfully added an item' });
         } else {
@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        const item = await Hubs.update(req.params.id, req.body);
+        const item = await Items.update(req.params.id, req.body);
         if (item) {
             res.status(200).json({ item, message: 'info updated' });
         } else {
@@ -51,7 +51,7 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const count = await Hubs.remove(req.params.id);
+        const count = await Items.remove(req.params.id);
         if (count > 0) {
             res.status(200).json({ message: "item deleted" });
         } else {

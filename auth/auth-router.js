@@ -6,15 +6,9 @@ const Users = require('../users/users-model.js');
 
 router.post('/register', (req, res) => {
     let user = req.body;
-
-    // hash the password
-    const hash = bcrypt.hashSync(user.password, 8); // the 8 is the number or round (2^8) iterations  
-
-    // override the plaintext password with the hash
+    const hash = bcrypt.hashSync(user.password, 8);  
     user.password = hash
-
-
-    Users.add(user)
+    Users.insert(user)
         .then(saved => {
             res.status(201).json(saved);
         })

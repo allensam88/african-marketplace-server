@@ -1,16 +1,33 @@
-db = require('../data/db-config.js');
+db = require('../database/dbconfig.js');
 
 module.exports = {
-    insert,
     find,
     findBy,
     findById,
+    insert,
     update,
     remove
 };
 
+
+
+function find() {
+    return db('items');
+}
+
+function findBy(filter) {
+    return db('items')
+        .where(filter)
+}
+
+function findById(id) {
+    return db('items')
+        .where({ id })
+        .first();
+}
+
 function insert(item) {
-    return db('hubs')
+    return db('items')
         .insert(item, 'id')
         .then(ids => {
             const [id] = ids;
@@ -18,29 +35,14 @@ function insert(item) {
         });
 }
 
-function find() {
-    return db('hubs');
-}
-
-function findBy(filter) {
-    return db('hubs')
-        .where(filter)
-}
-
-function findById(id) {
-    return db('hubs')
-        .where({ id })
-        .first();
-}
-
 function update(id, changes) {
-    return db('hubs')
+    return db('items')
         .where({ id })
         .update(changes);
 }
 
 function remove(id) {
-    return db('hubs')
+    return db('items')
         .where({ id })
         .del();
 }

@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const location = await Locatons.findById(req.params.id);
+        const location = await Locations.findById(req.params.id);
         if (location) {
             res.status(200).json(location);
         } else {
