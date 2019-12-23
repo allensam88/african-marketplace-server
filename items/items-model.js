@@ -1,4 +1,4 @@
-db = require('../database/dbconfig.js');
+db = require('../database/dbConfig.js');
 
 module.exports = {
     find,
