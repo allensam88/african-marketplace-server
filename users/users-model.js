@@ -5,13 +5,14 @@ module.exports = {
     findBy,
     findById,
     findUserItems,
+    findUser,
     insert,
     update,
     remove
 };
 
 function find() {
-    return db('users').select('id', 'username', 'password');
+    return db('users').select('id', 'username').orderBy('id');
 }
 
 function findBy(filter) {
@@ -22,7 +23,7 @@ function findBy(filter) {
 
 function findById(id) {
     return db('users')
-        .select('id', 'username', 'password')
+        .select('id', 'username')
         .where({ id })
         .first();
 }
@@ -30,8 +31,20 @@ function findById(id) {
 function findUserItems(id) {
     return db('users')
         .join('items', 'users.id', 'items.user_id')
-        .select('users.username', 'items.name', 'items.description', 'items.price', 'items.category', 'items.location')
+        .select('items.name', 'items.description', 'items.price', 'items.category', 'items.location')
         .where('users.id', id)
+}
+
+function findUser(id) {
+    const promises = [findById(id), findUserItems(id)]
+    return Promise.all(promises)
+        .then(function (results) {
+            let [user, items] = results;
+            if (user) {
+                user.items = items;
+                return user
+            }
+        })
 }
 
 function insert(user) {

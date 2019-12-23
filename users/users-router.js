@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
 
 router.get('/:id/items', async (req, res) => {
     try {
-        const userItems = await Users.findUserItems(req.params.id);
+        const userItems = await Users.findUser(req.params.id);
         if (userItems) {
             res.status(200).json(userItems);
         } else {
