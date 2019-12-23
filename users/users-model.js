@@ -34,9 +34,9 @@ function findUserItems(id) {
 
 function insert(user) {
     return db('users')
-        .returning('id')
-        .insert(user)
-        .then(id => {
+        .insert(user, 'id')
+        .then(ids => {
+            const [id] = ids;
             return findById(id);
         });
 }
