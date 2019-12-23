@@ -9,8 +9,9 @@ module.exports = {
         },
         seeds: { directory: './database/seeds' },
         pool: {
-            afterCreate: function (connection, done) {
-                connection.run('PRAGMA foreign_keys = ON', done)
+            afterCreate: (conn, done) => {
+              // runs after a connection is made to the sqlite engine
+              conn.run('PRAGMA foreign_keys = ON', done); // turn on FK enforcement
             }
         }
     },
@@ -31,8 +32,9 @@ module.exports = {
         client: 'pg',
         connection: process.env.DATABASE_URL,
         pool: {
-            afterCreate: function (connection, done) {
-                connection.run('PRAGMA foreign_keys = ON', done)
+            afterCreate: (conn, done) => {
+              // runs after a connection is made to the sqlite engine
+              conn.run('PRAGMA foreign_keys = ON', done); // turn on FK enforcement
             }
         },
         migrations: {
