@@ -89,7 +89,7 @@ Returns a single user object that includes an array of the user's market items, 
 ### `DELETE https://african-marketplace-1.herokuapp.com/api/users/:id`
 Deletes a specific user by id. Response will only return the count.
 
-## **CRUD Operations for a Market Item**
+## *CRUD Operations for a Market Item*
 
 ### `GET https://african-marketplace-1.herokuapp.com/api/items`
 Returns an arry with all the items, response ex:
