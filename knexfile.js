@@ -4,8 +4,7 @@ module.exports = {
         connection: { filename: './database/market.db3' },
         useNullAsDefault: true,
         migrations: {
-            directory: './database/migrations',
-            tableName: 'dbmigrations',
+            directory: './database/migrations'
         },
         seeds: { directory: './database/seeds' },
         pool: {

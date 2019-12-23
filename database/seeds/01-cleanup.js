@@ -4,6 +4,6 @@ exports.seed = function(knex) {
     return cleaner.clean(knex, {
         mode: 'truncate',
         restartIdentity: true,
-        ignoreTables: ['dbmigrations', 'dbmigrations_lock'],
+        ignoreTables: ['knex_migrations', 'knex_migrations_lock'],
     });
 };
