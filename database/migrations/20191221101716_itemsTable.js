@@ -3,7 +3,9 @@ exports.up = function (knex) {
         tbl.increments();
         tbl.string('name', 255).notNullable();
         tbl.string('description', 4000);
-        tbl.integer('price').notNullable();
+        tbl.integer('price');
+        tbl.string('category', 255);
+        tbl.string('location', 255);
         tbl.integer('user_id')
             .unsigned()
             .notNullable()
@@ -11,15 +13,8 @@ exports.up = function (knex) {
             .inTable('users')
             .onDelete('CASCADE')
             .onUpdate('CASCADE');
-        tbl.integer('location_id')
-            .unsigned()
-            .notNullable()
-            .references('id')
-            .inTable('locations')
-            .onDelete('CASCADE')
-            .onUpdate('CASCADE');
-    })
-};
+    });
+}
 
 exports.down = function (knex) {
     return knex.schema.dropTableIfExists('items');
