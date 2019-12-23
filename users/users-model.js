@@ -28,8 +28,10 @@ function findById(id) {
 }
 
 function findUserItems(id) {
-    return db('items')
-        .where('user_id' , id)
+    return db('users')
+        .join('items', 'users.id', 'items.user_id')
+        .select('users.username', 'items.name', 'items.description', 'items.price', 'items.category', 'items.location')
+        .where('users.id', id)
 }
 
 function insert(user) {
