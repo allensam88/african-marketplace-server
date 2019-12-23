@@ -1,5 +1,5 @@
 exports.seed = function(knex) {
-  return knex('items').del()
+  return knex('items').truncate()
     .then(function () {
       return knex('items').insert([
         {id: 1, name: 'basket', description: 'great for carrying produce', price: 4, category: '', location: '', user_id: 1},
