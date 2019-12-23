@@ -11,18 +11,18 @@ module.exports = {
 };
 
 function find() {
-    return db('users').select('id', 'username', 'location_id');
+    return db('users').select('id', 'username', 'password');
 }
 
 function findBy(filter) {
     return db('users')
-        .select('id', 'username', 'password', 'location_id')
+        .select('id', 'username', 'password')
         .where(filter);
 }
 
 function findById(id) {
     return db('users')
-        .select('id', 'username', 'location_id')
+        .select('id', 'username', 'password')
         .where({ id })
         .first();
 }
