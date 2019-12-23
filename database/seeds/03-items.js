@@ -22,7 +22,7 @@ exports.seed = function(knex) {
         {id: 18, name: 'sandals', description: 'leather hand crafted', price: 30, category: '', location: '', user_id: 9},
         {id: 19, name: 'shoes', description: 'many sizes and colors', price: 25, category: '', location: '', user_id: 10},
         {id: 20, name: 'toy blocks', description: 'great for your kids', price: 10, category: '', location: '', user_id: 10},
-        {id: 21, name: 'jerry can', description: 'great for carrying water', price: 7, user_id: 11},
+        {id: 21, name: 'jerry can', description: 'great for carrying water', price: 7, category: '', location: '', user_id: 11},
         {id: 22, name: 'ring', description: 'ruby and gold band', price: 400, category: '', location: '', user_id: 11},
         {id: 23, name: 'pillow', description: 'cool!', price: 41, category: '', location: '', user_id: 12},
         {id: 24, name: 'blanket', description: 'awesome!', price: 53, category: '', location: '', user_id: 12},
