@@ -9,8 +9,6 @@ module.exports = {
     remove
 };
 
-
-
 function find() {
     return db('items')
         .join('users', 'items.user_id', 'users.id')

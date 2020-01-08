@@ -1,35 +1,33 @@
 # African Marketplace API Documentation
 
-#### **NOTE: All endpoints require an authorization header with a token (except register/login).**
+#### **NOTE: All endpoints require an authorization header with a token (except register/login, GET all items, and GET item by id).**
 
 ## *REGISTER & LOGIN ENDPOINTS*
 
 ### `POST https://african-marketplace-1.herokuapp.com/api/register`
 Submit a new username and password. Both MUST be unique for each new registration. 
 
-Example:
+Example (doesn't exist in seed data):
 
     { 
-        username: "Santa_Claus", (required, unique)
-        password: "merryXmas!" (required, unique)
+        username: "New_User", (required, unique)
+        password: "fort_knox!" (required, unique)
     }
-
-
 
 ### `POST https://african-marketplace-1.herokuapp.com/api/login`
 Login and get a token back.
 
-Example:
+Example (doesn't exist in seed data):
 
     {
-        username: "Santa_Claus", (required, unique)
-        password: "merryXmas!" (required, unique)
+        username: "New_User", (required, unique)
+        password: "fort_knox!" (required, unique)
     }
 
 and the response will be:
 
     {
-        message: "Santa_Claus is now logged in"
+        message: "New_User is now logged in"
         token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRsYXVkYWhsMSIsImlhdCI6MTU3NDEyOD"
     }
 
@@ -84,7 +82,19 @@ Returns a single user object that includes an array of the user's market items, 
     } 
 
 ### `PUT https://african-marketplace-1.herokuapp.com/api/users/:id`
-*NOT BUILT YET* 
+Update any user by id.  
+Request body ex:
+
+    {
+        name: "apple",
+        description: "crisp fruit",
+        price: 3,
+        category: "food", 
+        location: "Nairobi",
+        user_id: 1 (required, must match an existing user's id)
+    }
+
+Response will only return the count. 
 
 ### `DELETE https://african-marketplace-1.herokuapp.com/api/users/:id`
 Deletes a specific user by id. Response will only return the count.

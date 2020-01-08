@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Items = require('../items/items-model.js');
+const authenticate = require('../auth/authenticate-middleware.js');
 
 router.get('/', async (req, res) => {
     try {
@@ -23,7 +24,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
     try {
         const item = await Items.insert(req.body);
         if (item) {
@@ -36,7 +37,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', authenticate, async (req, res) => {
     try {
         const item = await Items.update(req.params.id, req.body);
         if (item) {
@@ -49,7 +50,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticate, async (req, res) => {
     try {
         const count = await Items.remove(req.params.id);
         if (count > 0) {
