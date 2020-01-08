@@ -10,7 +10,7 @@ describe('auth functionality', function () {
     describe('register endpoint', function () {
         it('check status code', function () {
             return request(server)
-                .post('/api/auth/register')
+                .post('/api/register')
                 .send({ username: 'me', password: 'pass' })
                 .then(res => {
                     expect(res.status).toBe(201);
@@ -19,7 +19,7 @@ describe('auth functionality', function () {
 
         it('check for json', function () {
             return request(server)
-                .post('/api/auth/register')
+                .post('/api/register')
                 .send({ username: 'me', password: 'pass' })
                 .then(res => {
                     expect(res.type).toMatch(/json/i);
@@ -28,7 +28,7 @@ describe('auth functionality', function () {
 
         it('check to see it exists', function () {
             return request(server)
-                .post('/api/auth/register')
+                .post('/api/register')
                 .send({ username: 'me', password: 'pass' })
                 .then(async res => {
                     expect(await db('users')).toHaveLength(1);
@@ -39,11 +39,11 @@ describe('auth functionality', function () {
     describe('login endpoint', function () {
         it('check status code', function () {
             return request(server)
-                .post('/api/auth/register')
+                .post('/api/register')
                 .send({ username: 'me', password: 'pass' })
                 .then(res => {
                     return request(server)
-                        .post('/api/auth/login')
+                        .post('/api/login')
                         .send({ username: 'me', password: 'pass' })
                         .then(res => {
                             expect(res.status).toBe(200);
@@ -53,11 +53,11 @@ describe('auth functionality', function () {
 
         it('check for json', function () {
             return request(server)
-                .post('/api/auth/register')
+                .post('/api/register')
                 .send({ username: 'me', password: 'pass' })
                 .then(res => {
                     return request(server)
-                        .post('/api/auth/login')
+                        .post('/api/login')
                         .send({ username: 'me', password: 'pass' })
                         .then(res => {
                             expect(res.type).toMatch(/json/i);

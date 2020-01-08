@@ -11,7 +11,8 @@ Example (doesn't exist in seed data):
 
     { 
         username: "New_User", (required, unique)
-        password: "fort_knox!" (required, unique)
+        password: "fort_knox!" (required, unique),
+        profileImg: "https://fake-profile-image.com" (optional, default to null)
     }
 
 ### `POST https://african-marketplace-1.herokuapp.com/api/login`
@@ -28,7 +29,9 @@ and the response will be:
 
     {
         message: "New_User is now logged in"
-        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRsYXVkYWhsMSIsImlhdCI6MTU3NDEyOD"
+        token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRsYXVkYWhsMSIsImlhdCI6MTU3NDEyOD",
+        id: 31,
+        username: New_User
     }
 
 ## *CRUD Operations for Users*
@@ -38,15 +41,18 @@ Returns an array with all the users, response ex:
 
     {
         id: 1,
-        username: "Emmanuel"
+        username: "Emma",
+        profileImg: "https://fake-profile-image.com"
     },
     {
         id: 2,
-        username: "Dorothy"
+        username: "Dorothy",
+        profileImg: "https://fake-profile-image.com"
     },
     {
         id: 3,
-        username: "Robert"
+        username: "Roberta",
+        profileImg: "https://fake-profile-image.com"
     }
 
 ### `GET https://african-marketplace-1.herokuapp.com/api/users/:id`
@@ -54,7 +60,8 @@ Returns a single user object, response ex:
 
     {
         id: 1,
-        username: "Emmanuel"
+        username: "Emma",
+        profileImg: "https://fake-profile-image.com"
     }
 
 ### `GET https://african-marketplace-1.herokuapp.com/api/users/:id/items`
@@ -69,14 +76,16 @@ Returns a single user object that includes an array of the user's market items, 
                 description: "great for carrying produce",
                 price: 4,
                 category: "home",
-                location: "Kampala"
+                location: "Kampala",
+                itemImg: "https://fake-item-image.com"
             },
             {
                 name: "necklace",
                 description: "handmade, beautiful!",
                 price: 88,
                 category: "art",
-                location: "Dar es Salaam"
+                location: "Dar es Salaam",
+                itemImg: "https://fake-item-image.com"
             }
         ]
     } 
@@ -86,11 +95,9 @@ Update any user by id.
 Request body ex:
 
     {
-        name: "apple",
-        description: "crisp fruit",
-        price: 3,
-        category: "food", 
-        location: "Nairobi",
+        username: "Wayne",
+        password: "exc311Ent!"
+        profileImg: "https://fake-profile-image.com",
         user_id: 1 (required, must match an existing user's id)
     }
 
@@ -111,7 +118,8 @@ Returns an arry with all the items, response ex:
             price: 4,
             category: "home",
             location: "Kampala",
-            owner: "Emmanuel"
+            itemImg: "https://fake-item-image.com",
+            owner: "Emma"
         },
         {
             name: "necklace",
@@ -119,7 +127,8 @@ Returns an arry with all the items, response ex:
             price: 88,
             category: "art",
             location: "Dar es Salaam",
-            owner: "Emmanuel"
+            itemImg: "https://fake-item-image.com",
+            owner: "Emma"
         },
         {
             name: "table",
@@ -127,6 +136,7 @@ Returns an arry with all the items, response ex:
             price: 12,
             category: "home",
             location: "Nairobi",
+            itemImg: "https://fake-item-image.com",
             owner: "Dorothy"
         }
     ]
@@ -140,7 +150,8 @@ Returns a single market item by id, response ex:
         price: 4,
         category: "home",
         location: "Kampala",
-        owner: "Emmanuel"
+        itemImg: "https://fake-item-image.com",
+        owner: "Emma"
     }
 
 ### `POST https://african-marketplace-1.herokuapp.com/api/items`
@@ -152,6 +163,7 @@ Add a new market item, user_id is *REQUIRED*. Request body ex:
         price: 2, (optional, defaults null)
         category: "food", (optional, default to null)
         location: "Zanzibar", (optional, default to null)
+        itemImg: "https://fake-item-image.com", (optional, default to null)
         user_id: 1 (required, must match an existing user's id)
     }
 
@@ -167,6 +179,7 @@ user_id is also *REQUIRED*. Request body ex:
         price: 3,
         category: "food", 
         location: "Nairobi",
+        itemImg: "https://fake-item-image.com",
         user_id: 1 (required, must match an existing user's id)
     }
 
