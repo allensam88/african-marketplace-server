@@ -12,7 +12,7 @@ module.exports = {
 function find() {
     return db('items')
         .join('users', 'items.user_id', 'users.id')
-        .select('items.id', 'items.name', 'items.description', 'items.price', 'items.category', 'items.location', 'users.username as owner')
+        .select('items.id', 'items.name', 'items.description', 'items.price', 'items.category', 'items.location', 'items.itemImg', 'users.username as owner')
         .orderBy('items.id')
 }
 
@@ -24,7 +24,7 @@ function findBy(filter) {
 function findById(id) {
     return db('items')
         .join('users', 'items.user_id', 'users.id')
-        .select('items.name', 'items.description', 'items.price', 'items.category', 'items.location', 'users.username as owner')
+        .select('items.name', 'items.description', 'items.price', 'items.category', 'items.location', 'items.itemImg', 'users.username as owner')
         .where('items.id', id)
         .first();
 }

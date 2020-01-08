@@ -12,18 +12,18 @@ module.exports = {
 };
 
 function find() {
-    return db('users').select('id', 'username').orderBy('id');
+    return db('users').select('id', 'username', 'profileImg').orderBy('id');
 }
 
 function findBy(filter) {
     return db('users')
-        .select('id', 'username', 'password')
+        .select('id', 'username', 'password', 'profileImg')
         .where(filter);
 }
 
 function findById(id) {
     return db('users')
-        .select('id', 'username')
+        .select('id', 'username', 'profileImg')
         .where({ id })
         .first();
 }
@@ -31,7 +31,7 @@ function findById(id) {
 function findUserItems(id) {
     return db('users')
         .join('items', 'users.id', 'items.user_id')
-        .select('items.name', 'items.description', 'items.price', 'items.category', 'items.location')
+        .select('items.name', 'items.description', 'items.price', 'items.category', 'items.location', 'items.itemImg')
         .where('users.id', id)
 }
 

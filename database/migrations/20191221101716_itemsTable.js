@@ -6,6 +6,7 @@ exports.up = function (knex) {
         tbl.integer('price');
         tbl.string('category', 255);
         tbl.string('location', 255);
+        tbl.string('itemImg');
         tbl.integer('user_id')
             .unsigned()
             .notNullable()
